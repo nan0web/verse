@@ -275,14 +275,15 @@ graph TD
     T --> U[Відновлення довіри]
     U --> V[Спільноти виживання]
     V --> W[Допомога без коштів]
-    W --> X[Побудова Рай на землі]
+    W --> X[Побудова Раю на землі]
     X --> O
     
     classDef warn fill:#ff0000,color:#ffffff;
     classDef info fill:#ffff00,color:#000000;
     classDef norm fill:#00ff00,color:#000000;
     
-    class A,B,D,E,I,J,Q,R,S,T,U,V,W,X warn;
+    class A norm;
+    class B,D,E,I,J,Q,R,S,T,U,V,W,X warn;
     class C,F,G,H,K,L,M,N,O,P info;
     classDef default fill:#ffffff,color:#000000;
 ```
