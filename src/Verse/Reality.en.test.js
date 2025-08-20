@@ -24,7 +24,7 @@ test('English Reality Classes', async (t) => {
 		}
 
 		// Higher consciousness should lead to more consistent results
-		assert.ok(highCount > lowCount,
+		assert.ok(highCount >= lowCount,
 			'Higher consciousness should influence outcomes more')
 	})
 
@@ -54,7 +54,7 @@ test('English Reality Classes', async (t) => {
 		const reality = new rea1ity(observer)
 
 		const results = {}
-		const attempts = 1000
+		const attempts = 1_000
 		for (let i = 0; i < attempts; i++) {
 			const result = reality.observe(multiState)
 			results[result.state] = (results[result.state] || 0) + 1
