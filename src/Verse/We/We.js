@@ -1,9 +1,11 @@
+import I from "../I/I.js"
+
 class We {
 	/** @type {I[]} */
 	members
 	/**
 	 * @param {object} input
-	 * @param {I[]} input.members
+	 * @param {I[]} [input.members]
 	 */
 	constructor(input = {}) {
 		const {

@@ -1,0 +1,30 @@
+{
+	"name": "@nan0web/verse",
+	"version": "1.0.0",
+	"description": "I•We•Meta•Uni•Verse - the source of verse classes and algorithms.",
+	"main": "src/index.js",
+	"types": "types/index.d.ts",
+	"type": "module",
+	"scripts": {
+		"build": "tsc",
+		"test": "node --test src/**/*.test.js",
+		"test:coverage": "node --test --experimental-test-coverage --test-coverage-include=src/**/*.js",
+		"test:release": "node --test releases/**/*.test.js"
+	},
+	"keywords": [
+		"verse",
+		"nan0web",
+		"fundamental"
+	],
+	"author": "ЯRаСлав YaRaSLove <support@yaro.page>",
+	"license": "ISC",
+	"packageManager": "pnpm@10.11.0",
+	"devDependencies": {
+		"@nan0web/co": "workspace:*",
+		"@nan0web/types": "workspace:*"
+	},
+	"peerDependencies": {
+		"@nan0web/co": "^1.0.0",
+		"@nan0web/types": "^1.0.0"
+	}
+}

@@ -2,15 +2,15 @@ import names from "./names.js"
 import namesMen from "./names.men.js"
 import namesWomen from "./names.women.js"
 
-const namesMap = new Map(names)
+const aliasMap = new Map(names)
 const namesList = [...namesMen, ...namesWomen]
 
 function findAlias(word, variants) {
 	for (const variant of variants) {
-		if (namesMap.has(variant)) {
-			return `${variant}(${namesMap.get(variant)})`
+		if (aliasMap.has(variant)) {
+			return `${variant}(${aliasMap.get(variant)})`
 		}
-		for (const [name, variants] of namesMap) {
+		for (const [name, variants] of aliasMap) {
 			if (variants.includes(variant)) {
 				return `${name}(${variant})`
 			}
@@ -36,6 +36,18 @@ class HumanName {
 	}
 	toString() {
 		return this.value.join(" ")
+	}
+
+	/**
+	 * @param {*} input
+	 * @returns {HumanName}
+	 */
+	static from(input) {
+		if (input instanceof HumanName) return input
+		if ("string" === typeof input) {
+			return this.parse(input)
+		}
+		return new HumanName(input)
 	}
 
 	/**

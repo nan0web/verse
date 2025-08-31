@@ -11,7 +11,7 @@ class HumanGender {
 	 */
 	constructor(input) {
 		this.value = -1
-		if (typeOf(Number)(input)) {
+		if ("number" === typeof input) {
 			this.value = input < 0 ? -1 : input > 0 ? 1 : 0
 		}
 		if (typeOf(Boolean)(input)) {
@@ -23,6 +23,17 @@ class HumanGender {
 	}
 	toNumber() {
 		return this.value
+	}
+	/**
+	 * @param {*} input
+	 * @returns {HumanGender}
+	 */
+	static from(input) {
+		if (input instanceof HumanGender) return input
+		if ("string" === typeof input) {
+			return this.parse(input)
+		}
+		return new HumanGender(input)
 	}
 	/**
 	 * @param {string} str
