@@ -7,17 +7,19 @@
 	"type": "module",
 	"scripts": {
 		"build": "tsc",
-		"test": "node --test src/**/*.test.js",
+		"test": "node --test \"src/**/*.test.js\" | nan0test parse --fail",
 		"test:coverage": "node --test --experimental-test-coverage --test-coverage-include=src/**/*.js",
+		"test:coverage:collect": "nan0test coverage",
+		"test:docs": "node --test src/README.md.js",
+		"test:status": "nan0test status",
 		"test:release": "node --test releases/**/*.test.js",
 		"clean": "rm -rf .cache/ && rm -rf dist/",
 		"clean:modules": "rm -rf node_modules",
-		"test:docs": "node --test src/README.md.js",
-		"test:coverage:collect": "nan0test coverage",
-		"test:status": "nan0test status",
+		"release": "nan0release publish",
 		"precommit": "npm test",
 		"prepush": "npm test",
-		"prepare": "husky"
+		"prepare": "husky",
+		"playground": "node playground/main.js"
 	},
 	"keywords": [
 		"verse",
@@ -28,9 +30,12 @@
 	"license": "ISC",
 	"packageManager": "pnpm@10.11.0",
 	"devDependencies": {
-		"@nan0web/co": "workspace:*",
-		"@nan0web/types": "workspace:*",
-		"@nan0web/test": "workspace:*",
+		"@nan0web/db-fs": "^1.0.0",
+		"@nan0web/co": "^1.0.0",
+		"@nan0web/log": "^1.0.0",
+		"@nan0web/types": "^1.0.0",
+		"@nan0web/release": "^1.0.0",
+		"@nan0web/test": "^1.0.0",
 		"husky": "^9.1.7"
 	},
 	"peerDependencies": {

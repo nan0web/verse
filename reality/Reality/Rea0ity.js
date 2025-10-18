@@ -1,3 +1,5 @@
+import Phenomenon from "./Phenomenon.js"
+
 /**
  * Rea0ity (objective reality)
  */

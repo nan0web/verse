@@ -1,15 +1,18 @@
-import { test } from 'node:test'
-import assert from 'node:assert'
-import * as main from './index.js'
-import * as en from './Reality.en.js'
-import * as uk from './Reality.uk.js'
-import * as el from './Reality.el.js'
+import { describe, it } from 'node:test'
+import assert from 'node:assert/strict'
+import * as Verse from './index.js'
+import HumanContact from './Human/Contact.js'
+import HumanGender from './Human/Gender.js'
+import HumanName from './Human/Name.js'
+import I from './I/I.js'
+import We from './We/We.js'
 
-test('Module exports', () => {
-  assert.ok(main.en, 'English export exists')
-  assert.ok(main.uk, 'Ukrainian export exists')
-  assert.ok(main.el, 'Greek export exists')
-  assert.deepEqual(main.en, en, 'English re-export matches')
-  assert.deepEqual(main.uk, uk, 'Ukrainian re-export matches')
-  assert.deepEqual(main.el, el, 'Greek re-export matches')
+describe('Verse', () => {
+	it('should export all main classes', () => {
+		assert.ok(Verse.HumanContact === HumanContact)
+		assert.ok(Verse.HumanGender === HumanGender)
+		assert.ok(Verse.HumanName === HumanName)
+		assert.ok(Verse.I === I)
+		assert.ok(Verse.We === We)
+	})
 })

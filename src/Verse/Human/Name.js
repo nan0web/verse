@@ -34,6 +34,27 @@ class HumanName {
 	constructor(input) {
 		this.value = input
 	}
+	/** @returns {string} */
+	get firstName() {
+		const name = this.value[0] ?? ""
+		if (name.includes("(") && name.endsWith(")")) {
+			return name.split("(")[0]
+		}
+		return name
+	}
+	/** @returns {string} */
+	get alias() {
+		const name = this.value[0] ?? ""
+		if (name.includes("(") && name.endsWith(")")) {
+			return name.slice(0, -1).split("(")[1]
+		}
+		return ""
+	}
+	/** @returns {string} */
+	get lastName() {
+		if (this.value.length < 2) return ""
+		return this.value[this.value.length - 1] ?? ""
+	}
 	toString() {
 		return this.value.join(" ")
 	}

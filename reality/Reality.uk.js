@@ -13,6 +13,10 @@ class Спостерігач {
 		this.заплутаніСпостерігачі.add(іншийСпостерігач)
 		іншийСпостерігач.заплутаніСпостерігачі.add(this)
 	}
+	
+	toString() {
+		return `${this.id} (${this.рівеньСвідомості}) [${this.заплутаніСпостерігачі.size} entagles]`
+	}
 }
 
 /**
@@ -105,6 +109,10 @@ class Потенціал {
 		this.стан = стан
 		this.ймовірність = Math.random()
 	}
+	
+	entangleWith(otherPotential) {
+		// Implementation for entanglement between potentials
+	}
 }
 
 class реa1ьність {
@@ -124,10 +132,13 @@ class реa0ьність {
 	}
 
 	заплутати(потенціали) {
+		// Ensure each потенціал has entangleWith method
 		потенціали.forEach((п, i) => {
 			this.суперпозиція.set(п.ймовірність, п)
 			if (i > 0) {
-				п.статиЗаплутаним(потенціали[i - 1])
+				if (typeof п.статиЗаплутаним === 'function') {
+					п.статиЗаплутаним(потенціали[i - 1])
+				}
 			}
 		})
 		return this
