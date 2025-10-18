@@ -1,5 +1,5 @@
-export default HumanGender;
-declare class HumanGender {
+export default class HumanGender {
+    static Name: typeof HumanName;
     /**
      * @param {*} input
      * @returns {HumanGender}
@@ -19,3 +19,4 @@ declare class HumanGender {
     toString(): "men's gender" | "women's gender" | "unknown gender";
     toNumber(): number;
 }
+import HumanName from "./Name.js";

@@ -8,7 +8,7 @@
 	"scripts": {
 		"build": "tsc",
 		"test": "node --test \"src/**/*.test.js\" | nan0test parse --fail",
-		"test:coverage": "node --test --experimental-test-coverage --test-coverage-include=src/**/*.js",
+		"test:coverage": "node --test --experimental-test-coverage --test-coverage-include=\"src/**/*.js\"",
 		"test:coverage:collect": "nan0test coverage",
 		"test:docs": "node --test src/README.md.js",
 		"test:status": "nan0test status",

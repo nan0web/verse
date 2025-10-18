@@ -1,4 +1,3 @@
-export default HumanName;
 declare class HumanName {
     /**
      * @param {*} input
@@ -22,5 +21,20 @@ declare class HumanName {
     constructor(input: string[]);
     /** @type {string[]} */
     value: string[];
+    /** @returns {string} */
+    get firstName(): string;
+    /** @returns {string} */
+    get alias(): string;
+    /** @returns {string} */
+    get lastName(): string;
     toString(): string;
 }
+declare namespace HumanName {
+    export { names as ALIASES };
+    export { namesMen as MEN };
+    export { namesWomen as WOMEN };
+}
+export default HumanName;
+import names from "./names.js";
+import namesMen from "./names.men.js";
+import namesWomen from "./names.women.js";

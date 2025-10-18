@@ -1,6 +1,8 @@
 # @nan0web/verse
 
-<!-- %PACKAGE_STATUS% -->
+|Package name|[Status](https://github.com/nan0web/monorepo/blob/main/system.md#написання-сценаріїв)|Documentation|Test coverage|Features|Npm version|
+|---|---|---|---|---|---|
+ |[@nan0web/verse](https://github.com/nan0web/verse/) |🟢 `98.9%` |🧪 [English 🏴󠁧󠁢󠁥󠁮󠁧󠁿](https://github.com/nan0web/verse/blob/main/README.md)<br />[Українською 🇺🇦](https://github.com/nan0web/verse/blob/main/docs/uk/README.md) |🟢 `95.1%` |✅ d.ts 📜 system.md 🕹️ playground |— |
 
 I•We•Meta•Uni•Verse — the foundational layer of human structures in the nan0web ecosystem.
 
@@ -84,6 +86,45 @@ const bob = new I("Bob")
 const group = new We({ members: [alice, bob] })
 console.info(String(group)) // ← Alice\nBob
 ```
+### Overriding static dictionaries
+
+You can override internal static dictionaries such as gender lists or name aliases.
+This is useful for customizations, adding support for new languages, or correcting edge cases.
+
+Example:
+```js
+import { HumanGender, HumanName } from '@nan0web/verse'
+
+// Create custom name class with different dictionaries
+class CustomHumanName extends HumanName {
+  static MEN = ['Alex', 'John']
+  static WOMEN = ['Alexa', 'Jane']
+}
+
+// Override the Name reference in HumanGender
+HumanGender.Name = CustomHumanName
+
+const gender = HumanGender.from('Alex')
+console.log(gender.toNumber()) // ← 1
+```
+
+How to override static dictionaries for HumanGender.Name?
+```js
+// Backup original data
+const OriginalName = HumanGender.Name
+
+// Create custom name class
+class CustomHumanName extends HumanName {
+	static MEN = ["TestMaleName"]
+	static WOMEN = ["TestFemaleName"]
+}
+
+// Override static dictionary
+HumanGender.Name = CustomHumanName
+
+// Test overridden behavior
+const gender = HumanGender.from("TestMaleName")
+```
 ## API
 
 ### HumanContact
@@ -100,6 +141,7 @@ Detects gender by name parsing with support for Ukrainian and international name
 - `from(input)` – creates HumanGender by name or number
 - `toNumber()` – returns -1 (unknown), 0 (f), 1 (m)
 - `toString()` – descriptive string
+- `Name` static property – reference to HumanName class that can be overridden
 
 ### HumanName
 
@@ -108,6 +150,7 @@ Parses and sorts full names including alias support.
 - `from(input)` – creates a new HumanName from array or string
 - `toString()` – returns full name
 - `firstName`, `lastName`, `alias` – getters
+- `ALIASES`, `MEN`, `WOMEN` – static arrays that can be overridden
 
 ### I
 

@@ -1,2 +1,2 @@
-declare const _default: Array<readonly [any, any]>;
+declare const _default: [string, string[]][];
 export default _default;

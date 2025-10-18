@@ -1,9 +1,8 @@
 import { typeOf } from "@nan0web/types"
-import namesMen from "./names.men.js"
-import namesWomen from "./names.women.js"
 import HumanName from "./Name.js"
 
-class HumanGender {
+export default class HumanGender {
+	static Name = HumanName
 	/** @type {number} */
 	value
 	/**
@@ -52,7 +51,7 @@ class HumanGender {
 		if (["-1", "-", ""].includes(str)) {
 			return new HumanGender(-1)
 		}
-		const name = HumanName.parse(str)
+		const name = this.Name.parse(str)
 		for (let word of name.value) {
 			const [name] = word.split("(")
 			const variants = [
@@ -61,10 +60,10 @@ class HumanGender {
 				name.slice(0, 1).toLocaleUpperCase() + name.slice(1).toLocaleLowerCase(),
 			]
 			for (const variant of variants) {
-				if (namesMen.includes(variant)) {
+				if (this.Name.MEN.includes(variant)) {
 					return new HumanGender(1)
 				}
-				if (namesWomen.includes(variant)) {
+				if (this.Name.WOMEN.includes(variant)) {
 					return new HumanGender(0)
 				}
 			}
@@ -72,5 +71,3 @@ class HumanGender {
 		return new HumanGender(-1)
 	}
 }
-
-export default HumanGender

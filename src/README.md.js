@@ -157,6 +157,51 @@ function testRender() {
 
 	/**
 	 * @docs
+	 * ### Overriding static dictionaries
+	 *
+	 * You can override internal static dictionaries such as gender lists or name aliases.
+	 * This is useful for customizations, adding support for new languages, or correcting edge cases.
+	 *
+	 * Example:
+	 * ```js
+	 * import { HumanGender, HumanName } from '@nan0web/verse'
+	 *
+	 * // Create custom name class with different dictionaries
+	 * class CustomHumanName extends HumanName {
+	 *   static MEN = ['Alex', 'John']
+	 *   static WOMEN = ['Alexa', 'Jane']
+	 * }
+	 *
+	 * // Override the Name reference in HumanGender
+	 * HumanGender.Name = CustomHumanName
+	 *
+	 * const gender = HumanGender.from('Alex')
+	 * console.log(gender.toNumber()) // ← 1
+	 * ```
+	 */
+	it("How to override static dictionaries for HumanGender.Name?", () => {
+		// Backup original data
+		const OriginalName = HumanGender.Name
+
+		// Create custom name class
+		class CustomHumanName extends HumanName {
+			static MEN = ["TestMaleName"]
+			static WOMEN = ["TestFemaleName"]
+		}
+
+		// Override static dictionary
+		HumanGender.Name = CustomHumanName
+
+		// Test overridden behavior
+		const gender = HumanGender.from("TestMaleName")
+		assert.equal(to(Number)(gender), 1)
+
+		// Restore original data
+		HumanGender.Name = OriginalName
+	})
+
+	/**
+	 * @docs
 	 * ## API
 	 *
 	 * ### HumanContact
@@ -173,6 +218,7 @@ function testRender() {
 	 * - `from(input)` – creates HumanGender by name or number
 	 * - `toNumber()` – returns -1 (unknown), 0 (f), 1 (m)
 	 * - `toString()` – descriptive string
+	 * - `Name` static property – reference to HumanName class that can be overridden
 	 *
 	 * ### HumanName
 	 *
@@ -181,6 +227,7 @@ function testRender() {
 	 * - `from(input)` – creates a new HumanName from array or string
 	 * - `toString()` – returns full name
 	 * - `firstName`, `lastName`, `alias` – getters
+	 * - `ALIASES`, `MEN`, `WOMEN` – static arrays that can be overridden
 	 *
 	 * ### I
 	 *
